@@ -61,6 +61,12 @@ def _run_main(is_dry: bool):
 
     core = GIT_TITLE_CORE.format(extra)
 
+    if not core or core.isspace() or names_len == 0:
+        log.err(
+            "failed to find commited files info in git ls files stdout"
+            f" {stdout}")
+        exit(1)
+
     if is_dry:
         log.info(f"will commit message: \"{core}\"")
         return
@@ -75,7 +81,7 @@ def _run_main(is_dry: bool):
             f"failed to commit: git returned code {p.returncode},"
             f" err content is {p.stderr}")
         exit(p.returncode)
-    log.info(f"commited {len(raw_names)} entries with message {core}")
+    log.info(f"commited {len(raw_names)} entries with message \"{core}\"")
 
 async def async_main():
     VAR_DIR.mkdir(parents=True, exist_ok=True)
