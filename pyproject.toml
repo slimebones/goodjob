@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "goodjob"
+version = "0.1.0"
+description = ""
+authors = ["ryzhovalex <thed4rkof@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+gj = "goodjob.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pykit = {git = "https://github.com/slimebones/pykit", rev = "0.5.1"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
